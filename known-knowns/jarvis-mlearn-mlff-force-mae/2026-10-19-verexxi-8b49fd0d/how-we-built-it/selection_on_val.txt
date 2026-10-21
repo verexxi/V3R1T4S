@@ -1,0 +1,1 @@
+Li selection: C(16ch)=0.010867 D(32ch)=0.010175 val MAE -> D wins

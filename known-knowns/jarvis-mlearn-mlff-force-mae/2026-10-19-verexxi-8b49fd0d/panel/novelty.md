@@ -1,0 +1,12 @@
+# panel/novelty.md  (round 2: the claim folder now states the sibling-task values)
+
+Status page, fetched once, no retries: https://pages.nist.gov/jarvis_leaderboard/AI/MLFF/mlearn_Li_forces/ , HTTP 200, Date header Tue, 20 Oct 2026 12:20:38 GMT (2026-10-20T12:20:38Z), last modified Mon, 25 Aug 2025 15:37:31 GMT. Page sha256 01c8d7d4...28db differs from the snapshot's (a6b99448...); the listed values are identical (build or cache variation, not investigated). Best listed value 0.02733803004038507 (snap_mlearn); 7 entries (alignnff_mlearn_all_wt1 0.03108, chgnet 0.04647, m3gnet 0.05094, matgl 0.05163, alignnff_pretrained_wt10 0.1409, alignnff_mlearn_wt1 0.2640). Claimed 0.012793 is 53.2% below it: strictly lower, clears 5%.
+
+Repo (read-only): TROPHY_CASE.md (HTTP 200) has no mention of jarvis, mlearn, MLFF, MACE or force MAE. Open pull requests (GitHub API, first 100): the only related item is the Mo claim of this target; a different element, so it does not pre-empt Li. A repo search for jarvis, mlearn or MLFF returned only that PR.
+
+Literature (last 24 months, one web search, thin): Zuo et al. 2020 is older than 24 months and uses its own split; no from-scratch result below the leaderboard best on the official mlearn_Li_forces split was found; ALIGNN 2.0 (arXiv 2609.19487, 0.0264, pending verification there) is higher than 0.012793.
+
+Do the lower pretrained values defeat novelty? Decision of this skeptic: no. The folder states that mlearnall_Li_forces lists an eqV2 pretrained universal potential at 0.004035 on the same 29 test ids, 3.2 times lower than the claim. It belongs to a different leaderboard task (empty train set, zero-shot). The literal criterion compares against the best MAE listed on that task's page and requires training only on the train and val ids with no pretraining on data containing the test configurations; the eqV2 model is pretrained and so falls outside that category. The skeptic did not run compare_mlearnall.py, so 0.004035 is not independently verified here. The claim states the pretrained result openly and disclaims being the lowest known MAE; it is a record only for from-scratch training on mlearn_Li_forces. The skeptic notes that "strictly beats everything known" could be read to include the pretrained 0.004 and that a reader taking that broader reading would fail the claim: a judgment call. The comparison to Zuo et al. 2020 and to a later paper reporting a lower value is stated in the claim.
+
+context: subagent (same VM)
+pass: true
