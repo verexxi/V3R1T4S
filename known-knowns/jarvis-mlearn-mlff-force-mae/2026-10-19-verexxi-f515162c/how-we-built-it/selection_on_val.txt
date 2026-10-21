@@ -1,0 +1,1 @@
+Si selection: only C (16ch r4.5) run (per PREREG.v3 addendum 2: compute); val MAE C=0.051444 (bar 0.0659) -> C used
