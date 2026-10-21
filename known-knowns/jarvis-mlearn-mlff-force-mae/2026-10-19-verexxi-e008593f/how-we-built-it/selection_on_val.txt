@@ -1,0 +1,1 @@
+Cu selection: only C (16ch r4.5) run (PREREG.v4 addendum: compute); val MAE C=0.008357 (gate 0.95 x live best 0.01686) -> C used; val run finished after the finals started, as declared in PREREG.v4

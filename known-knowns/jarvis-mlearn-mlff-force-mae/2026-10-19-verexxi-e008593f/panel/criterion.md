@@ -1,0 +1,18 @@
+# panel/criterion.md
+
+## Findings
+- Checks run: the offline inputs were copied into `verify-it-yourself/_cache/` and `check_predictions.py` and `rerun_models.py` were run with the venv interpreter; both printed PASS. `run_checks.sh` itself was not run (it needs internet).
+- MAE recomputed from `object/predictions_Cu_forces_test.csv` against the benchmark json: 0.0085743 eV/A over 9534 components, equal to the `INDEX.csv` value.
+- Hashes and ids: the benchmark json, the three saved models, `object/ensemble.json` and the predictions file match their expected hashes; the prediction ids are exactly the 31 official test ids.
+- Margin: the listed best is 0.0177490 (matgl_mlearn), from the 8-entry table in `the-record-we-beat/snapshot.md` (fetched 2026-10-20T14:04:31Z). The improvement is 51.7% against the 5% threshold, strictly lower. The live page could not be re-fetched offline; the snapshot is the only evidence for the listed best.
+- Reproduction clause: re-running the saved models on the test structures reproduces the predictions file to a maximum difference of 3.1e-7 eV/A (< 1e-6).
+- Training clause: the training-id list equals the 262 benchmark train ids, no test id in it; small MACE models trained from scratch; the three seeds trained on all train ids; model selection used a validation subset of the train ids only (`how-we-built-it/selection_on_val.txt`); no pretrained weights; `how-we-built-it/PREREG.md` and `PREREG.v2.md` (with the v3/v4 addenda) say no test peeking, nothing contradicts that; logs and scripts present.
+- Null models: zero-force and train-mean-force baselines 0.4514, so 0.0086 is far from trivial; seed spread small (0.00876 to 0.00904).
+- Hidden quantifier, test-set size: the official test set is only 31 structures (9534 components); that is what the criterion defines, not a defect. The 51.7% margin is about ten times the 5% threshold, but it is evidence on one small split.
+- Comparison clause: the criterion requires the result to be compared against Zuo et al. 2020 and any later paper reporting a lower force MAE on the same mlearn test set, stated in the claim; it does not require beating those values. `CLAIM.md` cites Zuo 2020 (errors only in a figure) and ALIGNN 2.0 (0.0179, not lower). It also discloses, in `the-record-we-beat/mlearnall_comparison.md`, a lower value on the sibling task `mlearnall_Cu_forces`: the eqV2 86M omat/mp/salex entry gets 0.004834 on all 293 structures and 0.005205 on the 31 test ids; this package's 0.008574 is 1.6 times higher. That entry is a pretrained universal potential scored zero-shot on a different task, not a paper and not an entry on `mlearn_Cu_forces`; it fails the training clause and is outside the task whose live page defines the baseline. The package states this and does not claim the global lowest value. This skeptic could not do a literature search offline.
+- Subsumption: the win is not subsumed; it is a from-scratch model beating the best entry on the stated task by more than 5%; the pretrained model that beats it on the sibling task is disclosed and does not meet the training clause; the package does not call itself state of the art.
+
+confirmed_scope: A 3-seed ensemble of small MACE models trained from scratch on only the 262 official train ids of mlearn_Cu_forces reproducibly reaches a force MAE of 0.008574 eV/A on the 31 official test ids, which is 51.7% below the best listed entry on that task (0.017749, matgl_mlearn), but it is not the lowest known MAE for these structures, because a pretrained eqV2 model scored zero-shot on the sibling task mlearnall_Cu_forces gets 0.005205 on the same 31 ids.
+
+context: subagent (same VM)
+pass: true
